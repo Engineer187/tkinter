@@ -1,0 +1,16 @@
+import tkinter
+screen=tkinter.Tk()
+screen.geometry("800x800")
+screen.title("bacics")
+label1=tkinter.Label(screen,text="hi",width=10,height=2,bg="red",fg="black",padx=50,pady=100)
+entry1=tkinter.Entry(screen)
+def f1():
+    button1.config(bg="green")
+button1=tkinter.Button(screen,text="hi",command=f1)
+label1.grid(row=2,column=2)#displays it
+entry1.grid(row=2,column=3)#grid=row and colloms
+button1.grid(row=3,column=2)#place=cowardanates
+screen.mainloop()#Screen=Tk()
+                #Lable=Lable()
+                #Entry=Entry()
+                #Button=Button()

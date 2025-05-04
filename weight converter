@@ -1,0 +1,37 @@
+import tkinter
+screen=tkinter.Tk()
+screen.geometry("400x200")
+screen.title("bacics")
+def calculate():
+    kg =int(entry1.get())
+    gram=kg*1000
+    pounds=kg*2.205
+    ounce=kg*35.274
+    label5.config(text=str(gram))
+    label6.config(text=str(pounds))
+    label7.config(text=str(ounce))
+
+label1=tkinter.Label(screen,text="weight in kg",width=12,height=2,fg="black",padx=5,pady=10)
+entry1=tkinter.Entry(screen)
+button1=tkinter.Button(screen,text="Calculate",command=calculate)
+label2=tkinter.Label(screen,text="gram",width=12,height=2,fg="black",padx=5,pady=10)
+label3=tkinter.Label(screen,text="pounds",width=12,height=2,fg="black",padx=5,pady=10)
+label4=tkinter.Label(screen,text="ounce",width=12,height=2,fg="black",padx=5,pady=10)
+label5=tkinter.Label(screen,text="",width=12,height=2,fg="black",padx=5,pady=10)
+label6=tkinter.Label(screen,text="",width=12,height=2,fg="black",padx=5,pady=10)
+label7=tkinter.Label(screen,text="",width=12,height=2,fg="black",padx=5,pady=10)
+label1.grid(row=1,column=1)
+entry1.grid(row=1,column=2)
+button1.grid(row=1,column=3)
+label2.grid(row=2,column=1)
+label3.grid(row=2,column=2)
+label4.grid(row=2,column=3)
+label5.grid(row=3,column=1)
+label6.grid(row=3,column=2)
+label7.grid(row=3,column=3)
+
+
+
+
+
+screen.mainloop()

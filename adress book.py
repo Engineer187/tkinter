@@ -1,4 +1,6 @@
 import tkinter
+import tkinter.filedialog
+import tkinter.messagebox
 screen=tkinter.Tk()
 screen.geometry("600x500")
 screen.title("adress book")
@@ -10,6 +12,11 @@ def f1():
     email=entery4.get()
     birthday=entery5.get()
     info[name]=[adress,mobile,email,birthday]
+    entery1.delete(0,tkinter.END)
+    entery2.delete(0,tkinter.END)
+    entery3.delete(0,tkinter.END)
+    entery4.delete(0,tkinter.END)
+    entery5.delete(0,tkinter.END)
     print(info)
     uppdatelistbox()
 def uppdatelistbox():
@@ -17,13 +24,32 @@ def uppdatelistbox():
     keys=info.keys()
     for key in keys:
         list_box1.insert(tkinter.END,key)
-
-
+def f2():
+    b=list_box1.curselection()
+    name=list_box1.get(b)
+    del info [name]
+    uppdatelistbox()
+def f3():
+    file1=tkinter.filedialog.asksaveasfile()
+    if file1 is not None :
+        print(info,file=file1)
+def f4():
+    global info
+    file1=tkinter.filedialog.askopenfile()
+    if file1 is not None :
+        a=file1.read()
+        info=eval(a)
+        uppdatelistbox()
+def display(event):
+    q=list_box1.curselection()
+    name=list_box1.get(q)
+    values=info[name]
+    tkinter.messagebox.showinfo(title="adress book",message=values)
 list_box1=tkinter.Listbox(screen,font=("courier 20 normal"))
-button1=tkinter.Button(screen,text="open",command=f1)
+button1=tkinter.Button(screen,text="open",command=f4)
 button2=tkinter.Button(screen,text="edit",command=f1)
-button3=tkinter.Button(screen,text="delete",command=f1)
-button4=tkinter.Button(screen,text="save",command=f1)
+button3=tkinter.Button(screen,text="delete",command=f2)
+button4=tkinter.Button(screen,text="save",command=f3)
 button5=tkinter.Button(screen,text="uppdate/add",command=f1)
 label1=tkinter.Label(screen,text="adress book")
 label2=tkinter.Label(screen,text="name:")
@@ -36,7 +62,7 @@ entery2=tkinter.Entry(screen)
 entery3=tkinter.Entry(screen)
 entery4=tkinter.Entry(screen)
 entery5=tkinter.Entry(screen)
-
+list_box1.bind("<<ListboxSelect>>",display)
 label1.grid(row=1,column=2)
 label2.grid(row=2,column=3)
 label3.grid(row=3,column=3)

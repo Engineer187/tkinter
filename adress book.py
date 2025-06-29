@@ -40,14 +40,25 @@ def f4():
         a=file1.read()
         info=eval(a)
         uppdatelistbox()
+def f5():
+    q=list_box1.curselection()
+    name=list_box1.get(q)
+    values=info[name]
+    entery1.insert(tkinter.END,name)
+    entery2.insert(tkinter.END,values[0])
+    entery3.insert(tkinter.END,values[1])
+    entery4.insert(tkinter.END,values[2])
+    entery5.insert(tkinter.END,values[3])
 def display(event):
     q=list_box1.curselection()
     name=list_box1.get(q)
     values=info[name]
-    tkinter.messagebox.showinfo(title="adress book",message=values)
+    
+    mesege="name:"+name+"\nadress:"+values[0]+"\nmobile:"+values[1]+"\ne maill:"+values[2]+"\nbirthday:"+values[3]
+    tkinter.messagebox.showinfo(title="adress book",message=mesege)
 list_box1=tkinter.Listbox(screen,font=("courier 20 normal"))
 button1=tkinter.Button(screen,text="open",command=f4)
-button2=tkinter.Button(screen,text="edit",command=f1)
+button2=tkinter.Button(screen,text="edit",command=f5)
 button3=tkinter.Button(screen,text="delete",command=f2)
 button4=tkinter.Button(screen,text="save",command=f3)
 button5=tkinter.Button(screen,text="uppdate/add",command=f1)

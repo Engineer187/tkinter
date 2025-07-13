@@ -1,0 +1,27 @@
+import tkinter
+import tkinter.messagebox
+import random
+screen=tkinter.Tk()
+screen.geometry("450x360")
+screen.title("jumble_word")
+label1=tkinter.Label(screen,font=("courier 30 bold"),text="jumble word game")
+label2=tkinter.Label(screen,font=("courier 30 bold"),text="")
+label3=tkinter.Entry(screen,font=("courier 25 bold"),text="")
+button1=tkinter.Button(screen,font=("courier 30 bold"),text="check")
+button2=tkinter.Button(screen,font=("courier 30 bold"),text="clear")
+label1.grid(row=1,column=1)
+button1.grid(row=4,column=1)
+label2.grid(row=2,column=1)
+label3.grid(row=3,column=1)
+button2.grid(row=5,column=1)
+
+
+
+
+
+
+
+
+
+
+screen.mainloop()

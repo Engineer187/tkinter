@@ -1,22 +1,49 @@
 import tkinter
+from tkinter.colorchooser import askcolor
 class Paint():
     def __init__(self):
             self.screen=tkinter.Tk()
             self.screen.geometry("600x600")
             self.screen.title("paint")
-            self.button1=tkinter.Button(self.screen,text="pen")
-            self.button2=tkinter.Button(self.screen,text="brush")
-            self.button3=tkinter.Button(self.screen,text="collor")
-            self.button4=tkinter.Button(self.screen,text="eraser")
+            self.button1=tkinter.Button(self.screen,text="pen",command=self.pen)
+            self.button3=tkinter.Button(self.screen,text="collor",command=self.colorbutton)
+            self.button4=tkinter.Button(self.screen,text="eraser",command=self.ereser)
             self.scale=tkinter.Scale(self.screen,from_=1,to=10,orient=tkinter.HORIZONTAL)
-            self.canvas=tkinter.Canvas(self.screen,width=600,height=500)
+            self.canvas=tkinter.Canvas(self.screen,width=600,height=500,bg="light grey")
             self.button1.grid(row=1,column=1)
             self.canvas.grid(row=2,column=1,columnspan=5)
-            self.button2.grid(row=1,column=2)
             self.button3.grid(row=1,column=3)
             self.button4.grid(row=1,column=4)
             self.scale.grid(row=1,column=5)
+            self.setup()
             self.screen.mainloop()
+    def setup (self):
+        self.color="black"
+        self.size=3
+        self.oldx=None
+        self.oldy=None
+        self.eareser=False
+        self.canvas.bind("<B1-Motion>",self.draw)
+        self.canvas.bind("ButtonRelease-1",self.reset)
+    def colorbutton (self):
+         self.color=askcolor(color=self.color)[1]
+    def ereser (self) :
+         self.eareser=True
+    def pen (self):
+         self.eareser=False
+    def draw (self,event):
+        self.size=self.scale.get()
+        if self.eareser==True :
+            color="lightgrey"
+        else:
+            color=self.color 
+        if self.oldx and self.oldy :
+             self.canvas.create_line(self.oldx,self.oldy,event.x , event.y , width=self.size,fill=color,capstyle=tkinter.ROUND)
+        self.oldx=event.x
+        self.oldy=event.y
+    def reset (self,event):
+         self.oldx=None
+         self.oldy=None
 Paint()
 
 

@@ -1,0 +1,29 @@
+import tkinter
+screen=tkinter.Tk()
+screen.geometry("800x600")
+screen.title("ping pong")
+canvas1=tkinter.Canvas(width=800,height=600,bg="black")
+canvas1.grid(column=1,row=1)
+canvas1.create_line(400,0,400,600,width=5,fill="white",capstyle=tkinter.ROUND)
+canvas1.create_oval(300,200,500,400,width=5,outline="white")
+class Ball():
+    def __init__(self):
+        self.ball=canvas1.create_oval(100,100,150,150,width=10,fill="white")
+        self.x=1
+        self.y=1
+    def draw(self):
+        canvas1.move(self.ball,self.x.self.y)
+ball=Ball()
+class Paddle():
+    def __init__(self,x1,y1,x2,y2,color):
+        self.paddle=canvas1.create_rectangle(x1,y1,x2,y2,fill=color)
+Paddle(10,10,20,110,"red")
+Paddle(780,10,790,110,"blue")
+
+
+
+
+
+Ball()
+
+screen.mainloop()

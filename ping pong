@@ -12,13 +12,32 @@ class Ball():
         self.x=1
         self.y=1
     def draw(self):
-        canvas1.move(self.ball,self.x.self.y)
+        canvas1.move(self.ball,self.x,self.y)
+        self.position=canvas1.coords(self.ball)
+        if self.position[0] <= 0:
+            self.x=self.x*-1
+        if self.position[2] >= 800:
+            self.x=self.x*-1
+        if self.position[1] <= 0:
+            self.y=self.y*-1
+        if self.position[3] >= 600:
+            self.y=self.y*-1
 ball=Ball()
 class Paddle():
     def __init__(self,x1,y1,x2,y2,color):
         self.paddle=canvas1.create_rectangle(x1,y1,x2,y2,fill=color)
-Paddle(10,10,20,110,"red")
-Paddle(780,10,790,110,"blue")
+        self.changey=0
+    def draw(self):
+        canvas1.move(self.paddle,0,self.changey)
+        self.position=canvas1.coords(self.paddle)
+        if self.position[1] <= 0:
+            self.changey=0
+        if self.position[3] >= 600:
+            self.changey=0
+
+        
+paddle1=Paddle(10,10,20,110,"red")
+paddle2=Paddle(780,10,790,110,"blue")
 
 
 

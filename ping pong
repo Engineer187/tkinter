@@ -2,26 +2,33 @@ import tkinter
 screen=tkinter.Tk()
 screen.geometry("800x600")
 screen.title("ping pong")
+run=True
 canvas1=tkinter.Canvas(width=800,height=600,bg="black")
 canvas1.grid(column=1,row=1)
 canvas1.create_line(400,0,400,600,width=5,fill="white",capstyle=tkinter.ROUND)
 canvas1.create_oval(300,200,500,400,width=5,outline="white")
+score=canvas1.create_text(400,20,font=("thames regular",30,"normal"),fill="white",text="score: 0:0")
 class Ball():
     def __init__(self):
         self.ball=canvas1.create_oval(100,100,150,150,width=10,fill="white")
         self.x=1
         self.y=1
+        self.score1=0
+        self.score2=0
     def draw(self):
         canvas1.move(self.ball,self.x,self.y)
         self.position=canvas1.coords(self.ball)
         if self.position[0] <= 0:
             self.x=self.x*-1
+            self.score2=self.score2+1
         if self.position[2] >= 800:
             self.x=self.x*-1
+            self.score1=self.score1+1
         if self.position[1] <= 0:
             self.y=self.y*-1
         if self.position[3] >= 600:
             self.y=self.y*-1
+        canvas1.itemconfigure(score,text="score: "+str(self.score1)+":"+str(self.score2))
 ball=Ball()
 class Paddle():
     def __init__(self,x1,y1,x2,y2,color):
@@ -34,15 +41,23 @@ class Paddle():
             self.changey=0
         if self.position[3] >= 600:
             self.changey=0
-
-        
+        self.changey=0
+    def move_up(self,event):
+        self.changey=-10
+    def move_down(self,event):
+        self.changey=+10
 paddle1=Paddle(10,10,20,110,"red")
 paddle2=Paddle(780,10,790,110,"blue")
+canvas1.bind_all("w",paddle1.move_up)
+canvas1.bind_all("s",paddle1.move_down)
+canvas1.bind_all("<KeyPress-Up>",paddle2.move_up)
+canvas1.bind_all("<KeyPress-Down>",paddle2.move_down)
+while run==True :
+    ball.draw()
+    paddle1.draw()
+    paddle2.draw()
+    screen.update_idletasks()
+    screen.update()
 
-
-
-
-
-Ball()
 
 screen.mainloop()
